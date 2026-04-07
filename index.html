@@ -1,26 +1,139 @@
-CEO RISK MANAGEMENT
-2026 정책자금
-자가진단 가이드
-대한민국 중소기업 CEO를 위한 리스크 진단 및 자금 확보 전략. 지금 우리 기업의 상태를 객관적으로 확인하십시오.
+import React, { useState } from 'react';
+import { 
+  ShieldCheck, 
+  AlertTriangle, 
+  TrendingUp, 
+  ExternalLink, 
+  CheckCircle2, 
+  BarChart3, 
+  FileText,
+  MousePointer2
+} from 'lucide-react';
 
-부채비율 관리
-업종 평균 대비 높은 부채비율은 정책자금 거절의 1순위 사유입니다.
+const App = () => {
+  const [hovered, setHovered] = useState(false);
 
-기업부설연구소/특허
-가점 요인이 없는 기업은 경쟁에서 밀릴 수밖에 없습니다.
+  // 리스크 요인 데이터 구성
+  const riskFactors = [
+    { 
+      title: "부채비율 관리", 
+      description: "업종 평균 대비 높은 부채비율은 정책자금 거절의 1순위 사유입니다.", 
+      icon: <BarChart3 className="text-blue-500" /> 
+    },
+    { 
+      title: "기업부설연구소/특허", 
+      description: "가점 요인이 없는 기업은 경쟁에서 밀릴 수밖에 없습니다.", 
+      icon: <ShieldCheck className="text-green-500" /> 
+    },
+    { 
+      title: "가수금/가지급금", 
+      description: "재무제표상의 불투명한 항목은 대표님께 직접적인 리스크로 돌아옵니다.", 
+      icon: <AlertTriangle className="text-orange-500" /> 
+    },
+    { 
+      title: "정관 및 노무 정비", 
+      description: "정책자금은 단순 대출이 아닌 기업의 시스템을 평가하는 과정입니다.", 
+      icon: <FileText className="text-purple-500" /> 
+    }
+  ];
 
-가수금/가지급금
-재무제표상의 불투명한 항목은 대표님께 직접적인 리스크로 돌아옵니다.
+  return (
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6 font-sans">
+      {/* 메인 카드 컨테이너 */}
+      <div className="max-w-4xl w-full bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100">
+        
+        {/* 헤더 섹션: 그라데이션 배경과 타이틀 */}
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-10 text-white text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-4 opacity-10">
+            <TrendingUp size={120} />
+          </div>
+          <h2 className="text-lg font-medium tracking-widest mb-2 opacity-90 uppercase">CEO Risk Management</h2>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+            2026 정책자금 <br />
+            <span className="text-yellow-300">자가진단 가이드</span>
+          </h1>
+          <p className="text-indigo-100 text-lg max-w-2xl mx-auto leading-relaxed">
+            대한민국 중소기업 CEO를 위한 리스크 진단 및 자금 확보 전략. <br />
+            지금 우리 기업의 상태를 객관적으로 확인하십시오.
+          </p>
+        </div>
 
-정관 및 노무 정비
-정책자금은 단순 대출이 아닌 기업의 시스템을 평가하는 과정입니다.
+        {/* 콘텐츠 섹션: 리스크 카드 그리드 */}
+        <div className="p-8 md:p-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {riskFactors.map((item, index) => (
+              <div key={index} className="flex p-5 bg-slate-50 rounded-xl border border-slate-100 transition-all hover:shadow-md hover:bg-white">
+                <div className="mr-4 mt-1 bg-white p-2 rounded-lg shadow-sm">
+                  {item.icon}
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 mb-1 text-lg">{item.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
-"준비되지 않은 자에게 기회는 오지 않습니다."
+          {/* CTA 섹션: 진단 버튼 및 링크 */}
+          <div className="flex flex-col items-center justify-center space-y-6">
+            <div className="text-center">
+              <p className="text-slate-500 font-medium mb-2 italic">"준비되지 않은 자에게 기회는 오지 않습니다."</p>
+              <h4 className="text-xl font-bold text-slate-800">현장 진단 서비스 바로가기</h4>
+            </div>
 
-현장 진단 서비스 바로가기
-실시간 자가진단 시작하기
-hohyunkim83.github.io/policyfunding
-신뢰도 100% 알고리즘
-비밀 유지 및 보안 철저
-CEO 전용 맞춤 해결책
-Asset Management Expert - Samsung Life Secretary
+            <a 
+              href="https://hohyunkim83.github.io/policyfunding/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className={`
+                group relative flex items-center px-10 py-5 bg-blue-600 text-white text-xl font-bold rounded-full 
+                transition-all duration-300 transform 
+                ${hovered ? 'scale-105 bg-blue-700 shadow-xl' : 'scale-100 shadow-lg'}
+              `}
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <span className="mr-3 text-2xl">실시간 자가진단 시작하기</span>
+              <ExternalLink className={`transition-transform duration-300 ${hovered ? 'translate-x-1 -translate-y-1' : ''}`} />
+              
+              {/* URL 툴팁 */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex items-center text-blue-600 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap bg-blue-50 px-3 py-1 rounded-md border border-blue-100">
+                <MousePointer2 size={16} className="mr-1" />
+                hohyunkim83.github.io/policyfunding
+              </div>
+            </a>
+
+            {/* 신뢰 지표 섹션 */}
+            <div className="pt-10 border-t border-slate-100 w-full flex flex-wrap justify-center gap-6 md:gap-12">
+              <div className="flex items-center text-sm text-slate-500">
+                <CheckCircle2 size={16} className="mr-2 text-blue-500" />
+                신뢰도 100% 알고리즘
+              </div>
+              <div className="flex items-center text-sm text-slate-500">
+                <CheckCircle2 size={16} className="mr-2 text-blue-500" />
+                비밀 유지 및 보안 철저
+              </div>
+              <div className="flex items-center text-sm text-slate-500">
+                <CheckCircle2 size={16} className="mr-2 text-blue-500" />
+                CEO 전용 맞춤 해결책
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 푸터 섹션 */}
+        <div className="bg-slate-800 py-5 text-center">
+          <p className="text-slate-400 text-xs uppercase tracking-[0.2em] font-bold">
+            Asset Management Expert - Samsung Life Secretary
+          </p>
+        </div>
+      </div>
+      
+      <p className="mt-8 text-slate-400 text-sm">
+        © 2026 자산관리 전문가 & 삼성생명비서. All Rights Reserved.
+      </p>
+    </div>
+  );
+};
+
+export default App;
